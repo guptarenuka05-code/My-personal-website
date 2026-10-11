@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2eee5">
+  <meta name="description" content="Renuka Gupta — architect and fibre artist exploring thoughtful space-making, materiality, and the art of knotting.">
+  <title>Renuka Gupta — Architect & Fibre Artist</title>
+  <style>
+    :root {
+      --paper: #f2eee5;
+      --ink: #292a24;
+      --muted: #6f7065;
+      --clay: #a65e43;
+      --olive: #74775b;
+      --line: rgba(41, 42, 36, .23);
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --page: min(1440px, calc(100% - 9vw));
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+    a:hover { color: var(--clay); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--clay); outline-offset: 4px; }
+    .skip-link {
+      position: absolute; left: -9999px; top: 1rem; z-index: 10;
+      background: var(--ink); color: var(--paper); padding: .7rem 1rem;
+    }
+    .skip-link:focus { left: 1rem; }
+    .wrap { width: var(--page); margin-inline: auto; }
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1.5rem; padding: 1.25rem 0; border-bottom: 1px solid var(--line);
+      font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+    }
+    .wordmark { font-weight: 700; letter-spacing: .08em; text-decoration: none; }
+    .topbar nav { display: flex; gap: clamp(1rem, 3vw, 3rem); flex-wrap: wrap; }
+    .topbar nav a { text-decoration: none; }
+    .eyebrow {
+      font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--muted); font-weight: 600;
+    }
+    .hero {
+      min-height: min(780px, 82vh); padding: clamp(4.5rem, 10vw, 9rem) 0 4rem;
+      display: grid; grid-template-columns: 1.25fr .75fr; gap: 6vw; align-items: end;
+    }
+    .hero h1 {
+      font-family: var(--serif); font-weight: 400; letter-spacing: -.075em;
+      line-height: .84; font-size: clamp(4.8rem, 12.8vw, 12rem); margin: 1.3rem 0 2.4rem;
+    }
+    .hero h1 span { display: block; font-style: italic; color: var(--clay); }
+    .hero-intro { max-width: 24rem; padding-bottom: .5rem; }
+    .hero-intro p { font-size: clamp(1rem, 1.5vw, 1.25rem); line-height: 1.55; }
+    .hero-intro .subline { color: var(--muted); font-size: .82rem; }
+    .hero-visual {
+      grid-column: 1 / -1; display: grid; grid-template-columns: 1.2fr .8fr;
+      gap: 1rem; align-items: stretch; margin-top: 2.5rem;
+    }
+    .placeholder {
+      position: relative; min-height: 250px; overflow: hidden;
+      display: flex; align-items: end; padding: 1rem;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.18), transparent 45%),
+        repeating-linear-gradient(45deg, transparent 0 20px, rgba(41,42,36,.045) 20px 21px),
+        #d9d0c1;
+      border: 1px solid rgba(41,42,36,.12);
+    }
+    .placeholder::before {
+      content: ""; position: absolute; inset: 12% 10%;
+      border: 1px solid rgba(41,42,36,.23); pointer-events: none;
+    }
+    .placeholder .ph-label {
+      position: relative; max-width: 22rem; padding: .45rem .65rem;
+      background: var(--paper); font-size: .68rem; letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .hero-visual .placeholder:first-child { min-height: clamp(260px, 39vw, 540px); }
+    .hero-visual .placeholder:last-child { min-height: clamp(220px, 30vw, 420px); background-color: #c6c5b2; }
+    .section { padding: clamp(4.5rem, 9vw, 8.5rem) 0; border-top: 1px solid var(--line); }
+    .section-head {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; margin-bottom: 3.5rem;
+    }
+    .section-head h2 {
+      font: 400 clamp(2.8rem, 6.5vw, 6.8rem)/.95 var(--serif);
+      letter-spacing: -.06em; margin: 0; max-width: 14ch;
+    }
+    .section-head p { max-width: 34rem; color: var(--muted); margin: .5rem 0 0 auto; }
+    .statement {
+      display: grid; grid-template-columns: .65fr 1.35fr; gap: 5vw; align-items: start;
+    }
+    .statement-mark { font: italic clamp(4rem, 10vw, 9rem)/.8 var(--serif); color: var(--clay); }
+    .statement blockquote {
+      margin: 0; font: 400 clamp(2rem, 4.5vw, 4.8rem)/1.08 var(--serif);
+      letter-spacing: -.045em; max-width: 18ch;
+    }
+    .statement blockquote em { color: var(--olive); }
+    .statement .attribution { grid-column: 2; margin-top: 1.25rem; color: var(--muted); font-size: .75rem; }
+    .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem 1.25rem; }
+    .work-card:nth-child(even) { transform: translateY(4rem); }
+    .work-image { min-height: clamp(240px, 35vw, 470px); margin-bottom: 1rem; }
+    .work-image.tall { min-height: clamp(300px, 43vw, 560px); }
+    .work-meta { display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: .72rem; letter-spacing: .09em; text-transform: uppercase; }
+    .work-card h3 { font: 400 clamp(1.8rem, 3vw, 3rem)/1.05 var(--serif); margin: .5rem 0; letter-spacing: -.04em; }
+    .work-card p { color: var(--muted); max-width: 34rem; margin: 0; }
+    .note { font-size: .78rem; color: var(--muted); margin-top: 2rem; }
+    .practice {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 7vw; align-items: center;
+    }
+    .practice-copy h2 { font: 400 clamp(3rem, 7vw, 7rem)/.9 var(--serif); letter-spacing: -.065em; margin: 1rem 0 2rem; }
+    .practice-copy h2 em { color: var(--clay); font-weight: 400; }
+    .practice-copy p { max-width: 31rem; color: var(--muted); }
+    .practice-list { margin-top: 2rem; border-top: 1px solid var(--line); }
+    .practice-list div { display: flex; justify-content: space-between; gap: 1rem; padding: .9rem 0; border-bottom: 1px solid var(--line); }
+    .practice-list span:last-child { color: var(--muted); font-size: .75rem; text-align: right; }
+    .practice-visual { min-height: clamp(350px, 52vw, 650px); background-color: #d1c4b0; }
+    .timeline { border-top: 1px solid var(--line); }
+    .timeline-row {
+      display: grid; grid-template-columns: .45fr 1fr 1.5fr; gap: 2rem;
+      padding: 1.35rem 0; border-bottom: 1px solid var(--line); align-items: baseline;
+    }
+    .timeline-row .year { color: var(--clay); font-size: .75rem; letter-spacing: .08em; }
+    .timeline-row h3 { font-size: 1rem; margin: 0; font-weight: 600; }
+    .timeline-row p { color: var(--muted); margin: 0; font-size: .9rem; }
+    .contact {
+      padding: clamp(5rem, 12vw, 11rem) 0 2rem;
+      background: var(--ink); color: var(--paper);
+    }
+    .contact .eyebrow { color: #b7b5a5; }
+    .contact h2 { font: 400 clamp(3.5rem, 10vw, 10rem)/.88 var(--serif); letter-spacing: -.07em; margin: 1.5rem 0 3rem; }
+    .contact h2 em { color: #c98a6c; }
+    .contact-bottom { display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap; border-top: 1px solid rgba(242,238,229,.25); padding: 1.25rem 0 2rem; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+    .contact a { text-decoration: none; }
+    .contact a:hover { color: #c98a6c; }
+    .footer-note { color: #b7b5a5; font-size: .72rem; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+    @media (max-width: 760px) {
+      :root { --page: calc(100% - 2.5rem); }
+      .topbar { align-items: flex-start; flex-direction: column; }
+      .hero { min-height: auto; padding: 5rem 0 3rem; grid-template-columns: 1fr; gap: 1.5rem; }
+      .hero h1 { font-size: clamp(4.5rem, 19vw, 8rem); margin-bottom: 1.5rem; }
+      .hero-intro { max-width: 32rem; }
+      .hero-visual { grid-template-columns: 1fr; margin-top: 1rem; }
+      .hero-visual .placeholder:first-child, .hero-visual .placeholder:last-child { min-height: 280px; }
+      .section-head, .statement, .practice { grid-template-columns: 1fr; gap: 1.5rem; }
+      .section-head p { margin: 0; }
+      .statement .attribution { grid-column: 1; }
+      .work-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .work-card:nth-child(even) { transform: none; }
+      .work-image, .work-image.tall { min-height: 320px; }
+      .practice-visual { min-height: 390px; }
+      .timeline-row { grid-template-columns: 1fr 1fr; gap: .5rem 1rem; }
+      .timeline-row p { grid-column: 2; }
+    }
+    @media (max-width: 420px) {
+      .topbar nav { gap: .85rem; font-size: .66rem; }
+      .timeline-row { grid-template-columns: 1fr; gap: .25rem; }
+      .timeline-row p { grid-column: 1; }
+      .work-meta { font-size: .64rem; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="wrap">
+    <div class="topbar">
+      <a class="wordmark" href="#top" aria-label="Renuka Gupta, home">RG / Renuka Gupta</a>
+      <nav aria-label="Main navigation">
+        <a href="#approach">Approach</a>
+        <a href="#work">Selected work</a>
+        <a href="#practice">Fibre art</a>
+        <a href="#about">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="wrap hero" id="top" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">Architect · Designer · Fibre artist / Delhi, India</p>
+        <h1 id="hero-title">Renuka <span>Gupta.</span></h1>
+        <p class="eyebrow">Making space. Finding connection.</p>
+      </div>
+      <div class="hero-intro">
+        <p>I’m an architect and fibre artist exploring how thoughtful decisions, material choices and human needs come together to shape meaningful spaces and objects.</p>
+        <p class="subline">Currently Associate Designer at Space Matrix. Previously Studio Lotus and Studio Naqshbandhi, Auroville.</p>
+      </div>
+      <div class="hero-visual" aria-label="Portfolio image placeholders">
+        <div class="placeholder" role="img" aria-label="Placeholder for a selected architectural project photograph">
+          <span class="ph-label">Image placeholder / Architectural project</span>
+        </div>
+        <div class="placeholder" role="img" aria-label="Placeholder for a fibre-art or material study photograph">
+          <span class="ph-label">Image placeholder / Fibre, texture, material</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="approach" aria-labelledby="approach-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">01 / Point of view</p>
+          <h2 id="approach-title">Good design begins with paying attention.</h2>
+          <p>I’m interested in the space between an idea and its making: understanding people, asking better questions, testing materials and refining details until a design feels clear, useful and considered.</p>
+        </div>
+        <div class="statement reveal">
+          <div class="statement-mark" aria-hidden="true">“</div>
+          <blockquote>Thoughtful iterations, a <em>user-centric approach</em>, a pinch of aesthetics and sustainable resources.</blockquote>
+          <p class="attribution">A design philosophy shaped by architecture, making and material exploration.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">02 / Selected work</p>
+          <h2 id="work-title">Spaces shaped by people, place and purpose.</h2>
+          <p>From workplace environments to detailed execution, I enjoy bringing design intent into the realities of coordination, buildability, materials and delivery.</p>
+        </div>
+        <div class="work-grid">
+          <article class="work-card reveal">
+            <div class="placeholder work-image tall" role="img" aria-label="Placeholder for Cadence workplace project image">
+              <span class="ph-label">Replace with / Cadence workplace, Noida</span>
+            </div>
+            <div class="work-meta"><span>Workplace interiors</span><span>Noida, India</span></div>
+            <h3>Cadence — Buildings 1–3</h3>
+            <p>A multi-building workplace project exploring a minimal base, colour accents, tactile finishes and daylight, with attention to quality, detailing and on-site delivery.</p>
+          </article>
+          <article class="work-card reveal">
+            <div class="placeholder work-image" role="img" aria-label="Placeholder for Adani workplace project image">
+              <span class="ph-label">Replace with / Adani workplace project</span>
+            </div>
+            <div class="work-meta"><span>Workplace interiors</span><span>India</span></div>
+            <h3>Adani — Workplace environments</h3>
+            <p>Brand-led spaces combining functional planning with custom environmental graphics, artworks and cultural references informed by the client and context.</p>
+          </article>
+          <article class="work-card reveal">
+            <div class="placeholder work-image" role="img" aria-label="Placeholder for Studio Lotus visitor centre project image">
+              <span class="ph-label">Replace with / Mehrangarh Visitor Centre</span>
+            </div>
+            <div class="work-meta"><span>Architecture & experience</span><span>Rajasthan, India</span></div>
+            <h3>Mehrangarh Visitor Centre</h3>
+            <p>A project from my time at Studio Lotus, shaped by context, craft and thoughtful design decisions. Add project-specific imagery and your preferred description here.</p>
+          </article>
+          <article class="work-card reveal">
+            <div class="placeholder work-image tall" role="img" aria-label="Placeholder for architectural detailing or site photograph">
+              <span class="ph-label">Replace with / Detail, drawing or site photograph</span>
+            </div>
+            <div class="work-meta"><span>Design to execution</span><span>Architecture</span></div>
+            <h3>The work behind the finish</h3>
+            <p>Detailing, material samples, shop drawings, vendor coordination and site decisions — the practical work that helps a design move from drawing to built reality.</p>
+          </article>
+        </div>
+        <p class="note">Project imagery and descriptions are placeholders for portfolio editing. Confirm project permissions and credits before publishing.</p>
+      </div>
+    </section>
+
+    <section class="section" id="practice" aria-labelledby="practice-title">
+      <div class="wrap practice">
+        <div class="practice-copy reveal">
+          <p class="eyebrow">03 / A parallel practice</p>
+          <h2 id="practice-title">The art of <em>knotting.</em></h2>
+          <p>Through <em>Weave a Thread</em>, I explore fibre art and macramé as more than decoration: as structure, surface, pattern and an interaction of light, shadow and touch. It’s a hands-on way of thinking through material, rhythm and connection.</p>
+          <div class="practice-list" aria-label="Fibre art themes">
+            <div><span>Material</span><span>Cord, fibre, texture</span></div>
+            <div><span>Technique</span><span>Knotting, repetition, tension</span></div>
+            <div><span>Expression</span><span>Objects, surfaces, light</span></div>
+          </div>
+          <p class="note">Instagram: <a href="https://www.instagram.com/weave_a_thread/" target="_blank" rel="noopener noreferrer">@weave_a_thread</a></p>
+        </div>
+        <div class="placeholder practice-visual reveal" role="img" aria-label="Placeholder for a macramé artwork or handmade fibre object photograph">
+          <span class="ph-label">Image placeholder / Weave a Thread fibre artwork</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">04 / Experience</p>
+          <h2 id="about-title">Learning through making, coordinating and doing.</h2>
+          <p>My path has moved between architectural practice and workplace design, with a steady interest in how design intent survives the journey from concept to execution.</p>
+        </div>
+        <div class="timeline reveal">
+          <div class="timeline-row">
+            <span class="year">2025 — now</span>
+            <h3>Associate Designer · Space Matrix</h3>
+            <p>Workplace interiors, design development, multidisciplinary coordination and delivery.</p>
+          </div>
+          <div class="timeline-row">
+            <span class="year">2024 — 2025</span>
+            <h3>Architect · ACPL Design Ltd</h3>
+            <p>Architectural practice.</p>
+          </div>
+          <div class="timeline-row">
+            <span class="year">2021 — 2024</span>
+            <h3>Architect / Project Lead · Studio Lotus</h3>
+            <p>Design development, coordination and project delivery across a multidisciplinary practice.</p>
+          </div>
+          <div class="timeline-row">
+            <span class="year">2020 — 2021</span>
+            <h3>Architect · Allied Design Studios</h3>
+            <p>Architectural practice.</p>
+          </div>
+          <div class="timeline-row">
+            <span class="year">2019 — 2020</span>
+            <h3>Academic Intern · Studio Naqshbandhi, Auroville</h3>
+            <p>Exposure to multidisciplinary design practice.</p>
+          </div>
+        </div>
+        <p class="note">B.Arch, MBS School of Planning and Architecture (2015–2020). Earlier internships: ARCHADE Foundation and Sehgal and Associates.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow">05 / Get in touch</p>
+      <h2>Have a good<br><em>thing in mind?</em></h2>
+      <div class="contact-bottom">
+        <div>
+          <p class="eyebrow">For work, collaborations or a conversation</p>
+          <p><a href="mailto:guptarenuka05@gmail.com">guptarenuka05@gmail.com</a></p>
+        </div>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/renuka-gupta-133483135/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a href="https://www.instagram.com/weave_a_thread/" target="_blank" rel="noopener noreferrer">Weave a Thread ↗</a>
+          <a href="#top">Back to top ↑</a>
+        </div>
+      </div>
+      <div class="contact-bottom footer-note">
+        <span>Renuka Gupta / Delhi, India</span>
+        <span>Architecture · Materiality · Fibre art</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Progressive enhancement: reveal sections on scroll, without hiding content if JS is unavailable.
+    (function () {
+      const items = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        items.forEach(item => item.classList.add('visible'));
+        return;
+      }
+      items.forEach(item => item.classList.add('will-reveal'));
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      items.forEach(item => observer.observe(item));
+      // If scripts run, content is still visible before observation starts.
+      document.documentElement.classList.add('js-ready');
+    })();
+  </script>
+  <style>
+    /* The reveal animation is enabled only after the script marks elements for observation. */
+    .reveal.will-reveal { opacity: 0; transform: translateY(18px); }
+    .reveal.will-reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal.will-reveal, .reveal.will-reveal.visible { opacity: 1; transform: none; }
+    }
+  </style>
+</body>
+</html>
